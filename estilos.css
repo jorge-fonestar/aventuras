@@ -1,0 +1,148 @@
+@font-face {
+  font-family: 'digital';
+  src: local('digital'),
+       url('fonts/digital.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'karatefont';
+  src: local('karatefont'),
+       url('fonts/japon.ttf') format('truetype');
+}
+
+
+body,html{ 
+  width: 100% !important;
+  height: 100% !important;
+  font-family: sans-serif;
+  background-color: #000000;
+  color:#fff;
+  font-size: 25px !important;
+  /* overflow: hidden; */
+}
+
+.fullwidth {
+  width: 350px;
+  min-height: 10px; 
+  clear: both;
+  padding: 30px 7px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center;
+}
+
+h1, h2, h3, h6, h7 {font-weight: 100 !important; letter-spacing: 1px;}
+a {color: #A00; text-decoration: none}
+a:hover {cursor:pointer; color:#F00; text-decoration: underline}
+
+input[type="checkbox"] {margin: none;}
+.row input {width: 100% !important;;}
+
+.form-control{font-size: 25px !important;}
+
+.left{float:left !important}
+.right{float:right !important}
+
+
+#combate{font-family: 'karatefont', sans-serif;}
+
+.card-body{color:#000 !important; padding: 0.1rem !important;}
+.card-header {padding: 0.1rem !important;}
+
+
+linea{clear:both;}
+ln-titulo{width: 50%; float:left; margin-top: 3px;}
+ln-valor{width: 50%; float:left; height:32px;}
+
+#timer{font-family: 'digital', sans-serif; font-size: 50px; cursor:pointer;}
+
+.modal{
+  color: #000;
+  margin-top: 50px !important;
+}
+.modal-dialog{top: 100px !important;}
+
+.btn-transparente {
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  width: 100%;
+  margin: 5px 0px;
+}
+
+.btn-evento {
+  color: #fff;
+  border-color: #fff;
+  font-size: 24px;
+  width: 100%;
+  margin: 5px 0px;
+}
+
+.btn-evento:hover {
+  color: #fff;
+}
+
+#sensu-AO { float: left; margin: 20px -60px 5px 18px;}
+#sensu-AKA { float: left; margin: -68px 0px 0px 110px}
+
+.col-chui{
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  width: 30px;
+  max-width: none;
+}
+
+
+.form-check-input {position: relative !important;}
+
+.btn-modal{
+  border-color: #000;
+  font-size: 24px;
+  width: 100%;
+  margin: 5px 0px;
+}
+
+
+.bg-ao {
+  background-color: #007bff !important;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+.bg-aka {
+  background-color: #dc3545 !important;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+.scoreboard-number {
+  font-size: 80px;
+  font-family: 'digital', sans-serif;
+  color: white;
+  margin: 0px;
+  text-align: center;
+}
+
+.scoreboard-number-list {
+  font-size: 30px !important;
+}
+
+.border-ao {border: solid #007bff;}
+.border-aka {border: solid #dc3545;}
+
+.ao {color: #007bff}
+.aka {color: #dc3545}
+
+
+.table-title{
+  text-align: left;
+}
+
+#registros{
+  font-family: arial;
+  font-size: 12px;
+  text-align: left;
+}
