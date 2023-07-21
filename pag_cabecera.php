@@ -12,7 +12,7 @@
     <meta name="robots" content="none" />
 
     <meta charset="UTF-8">
-    <title>Karatekapp</title>
+    <title>Aventuras</title>
     <link rel="shortcut icon" href="fabicon.ico" type="image/ico">
     
     <!-- Incluimos los estilos de Bootstrap -->
@@ -31,6 +31,8 @@
     <!-- Incluimos los estilos personalizados -->
     <link rel="stylesheet" href="estilos.css">
 
+    <!-- Incluimos los scripts personalizados -->
+    <script src="funciones.js"></script>
 </head>
 <body>
 

@@ -1,12 +1,12 @@
 <?php
 return (object) array(
 
-    'url' => 'https://serviyorch.es/aventuras',
+    'baseurl' => '/aventuras',
 
     'db' => (object) array(
-        'host' => 'serviyorch.es',
-        'user' => 'ouujbxif_yorch',
-        'pass' => 'jorgete_serviyorch',
+        'host' => 'localhost',
+        'user' => 'aventurero',
+        'pass' => '{09XUxFw~8(3',
         'bdd'  => 'aventuras'
     ),
     

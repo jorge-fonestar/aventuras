@@ -1,0 +1,14 @@
+# Evitar el acceso a htacces
+<Files ~ "^\.(htaccess|htpasswd)$">
+deny from all
+</Files>
+
+# Redirecciones
+RewriteEngine on
+
+# Pasarlo todo por el Controller
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+?)/?$ index.php?ACCESO=$1 [NC,L,QSA]
+
+ErrorDocument 404 index.php

@@ -2,8 +2,9 @@
 global $config;
 $config = include('config.php');
 
-global $ID_CLUB;
-$ID_CLUB = $_SESSION['ID_CLUB'];
+global $debug;
+$debug = isset($_REQUEST['debug']);
+
 
 ################# BDD ##################
 
