@@ -38,11 +38,9 @@ if ($ACCESO=='SALIR') {
     exit;
 }
 
-
 include "pag_cabecera.php";
 $debug = false;
 if ($debug) echo "ACCESO: $ACCESO<br>";
-
 
 if (isset($ACCESO) and $ACCESO!=''){
 
@@ -58,12 +56,25 @@ if (isset($ACCESO) and $ACCESO!=''){
         $row = seleccionar_una($SQL); 
         extract($row); 
 
-        if (isset($respuesta)){
+        if ($respuesta!=''){
             
             // Validamos para saber si cargamos PASO_OK o PASO_KO
-            if (strtoupper(trim($respuesta)) == strtoupper(trim($RESPUESTA))){
-                $Paso = $PASO_OK;
-                if ($debug) echo "Respuesta '$respuesta' = OK<br>";
+            $arrRESPUESTAS = array_map('txt_limpio',explode(';', $RESPUESTA));
+            $arrPASOS_OK = array_map('txt_limpio',explode(';', $PASO_OK));
+
+            
+            $respuesta = txt_limpio($respuesta);
+            $PosFound = array_search($respuesta, $arrRESPUESTAS);
+            
+            if ($debug){
+                print_r($arrRESPUESTAS);
+                echo "<br>respuesta: $respuesta<br>";
+                echo "<br>PosFound: $PosFound<br>";
+            }
+
+            if ($PosFound>-1){
+                $Paso = $arrPASOS_OK[$PosFound];
+                if ($debug) echo "Respuesta '$respuesta' = OK; Pos=$PosFound<br>";
             }else{
                 $Paso = $PASO_KO;
                 if ($debug) echo "Respuesta '$respuesta' = KO<br>";
@@ -87,7 +98,7 @@ if (isset($ACCESO) and $ACCESO!=''){
         <?php if ($RESPUESTA!=''){ ?>
             <input type='text' id='respuesta' name='respuesta'>
         <?php }else{ ?>
-            <input type='hidden' id='respuesta' name='respuesta'>
+            <input type='hidden' id='respuesta' name='respuesta' value='NEXT-PASO'>
         <?php } ?>
         <button type='submit' id='aceptar'>Aceptar</button>
     </form>
@@ -95,28 +106,60 @@ if (isset($ACCESO) and $ACCESO!=''){
 
 
 }else{
-    ?>
-    <h1>Elige una aventura:</h1>
-    <?
-    $SQLWEB="SELECT * FROM HISTORIAS WHERE PUBLIC = 1";
-    $dataQueryWeb = seleccionar($SQLWEB);  
-    while ($rowweb = $dataQueryWeb->fetch_assoc()) {
-        extract($rowweb);
-        $URL = base64_encode($PASO_INI);
-        $TITULO = utf8_encode("$TITULO");
-        $LORE = utf8_encode("$LORE");
-        if ($COLOR_BG=='') $COLOR_BG = '#000';
-        if ($COLOR_TEXT=='') $COLOR_TEXT = '#FFF';
-        
-        echo "<a href='/aventuras/$URL' style='text-decoration: none; color: $COLOR_TEXT !important'>
-                <div class='aventura' style='background-color: $COLOR_BG !important'>
-                    <h1>$TITULO</h1>
-                    $LORE    
-                </div>
-            </a>";
+
+    // MENU PRINCIPAL
+    if ($CATEGORIA==''){
+        ?>
+        <h1>Elige una categoría</h1>
+        <?
+        $SQLWEB="SELECT DISTINCT(CATEGORIA) FROM HISTORIAS WHERE PUBLIC = 1 ORDER BY ORDEN";
+        $dataQueryWeb = seleccionar($SQLWEB);  
+        while ($rowweb = $dataQueryWeb->fetch_assoc()) {
+            extract($rowweb);
+            $CATEGORIA = utf8_encode("$CATEGORIA");
+            echo "<form action='$config->baseurl/$URL' method='post'>
+                <input class='aventura' type='submit' name='CATEGORIA' value='$CATEGORIA'/>
+            </form>";
+        }
+
+    }else{
+
+        ?>
+        <h1>Elige una aventura</h1>
+        <?
+        $SQLWEB="SELECT * FROM HISTORIAS WHERE CATEGORIA = '$CATEGORIA' AND PUBLIC = 1 ORDER BY ORDEN";
+        $dataQueryWeb = seleccionar($SQLWEB);  
+        while ($rowweb = $dataQueryWeb->fetch_assoc()) {
+            extract($rowweb);
+            $URL = base64_encode($PASO_INI);
+            $TITULO = utf8_encode("$TITULO");
+            $LORE = utf8_encode("$LORE");
+            if ($COLOR_BG=='') $COLOR_BG = '#000';
+            if ($COLOR_TEXT=='') $COLOR_TEXT = '#FFF';
+            
+            echo "<a href='/aventuras/$URL' style='text-decoration: none; color: $COLOR_TEXT !important'>
+                    <div class='aventura' style='background-color: $COLOR_BG !important'>
+                        <h2>$TITULO</h2>
+                        $LORE    
+                    </div>
+                </a>";
+        }
     }
+
+
+    
 }
 
 include "pag_pie.php";
 db_desconectar();
+
+
+
+function txt_limpio($txt){
+    $txt = trim($txt);
+    $txt = strtoupper($txt);
+
+    return $txt;
+}
+
 ?>

@@ -48,7 +48,11 @@ input[type="checkbox"] {margin: none;}
   padding: 10px 20px 30px;
   text-decoration: none;
   margin-bottom: 30px;
+  width: 100%;
+  color: #FFF !important;
+  background-color: #000 !important;
 }
+
 .aventura:hover {
   background-color: #555 !important;
   box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
