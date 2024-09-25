@@ -5,9 +5,9 @@ return (object) array(
 
     'db' => (object) array(
         'host' => 'localhost',
-        'user' => 'aventurero',
-        'pass' => '{09XUxFw~8(3',
-        'bdd'  => 'aventuras'
+        'user' => '',
+        'pass' => '',
+        'bdd'  => ''
     ),
     
     'paths' => (object) array(
